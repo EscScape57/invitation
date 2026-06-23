@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #faf0f2;
+            padding: 20px;
+            position: relative;
+            /* Фон с сердечками */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" opacity="0.08"><path fill="%23d47a8a" d="M60 106C35 89 12 73 12 53c0-12 9-22 20-22 11 0 18 7 22 14 4-7 11-14 22-14 11 0 20 10 20 22 0 20-23 36-48 53z"/></svg>');
+            background-size: 120px 120px;
+            background-position: 0 0;
+        }
+
+        /* Плавающие сердечки поверх фона (чисто CSS) */
+        body::before,
+        body::after {
+            content: '❤️';
+            position: fixed;
+            font-size: 20px;
+            opacity: 0.06;
+            animation: floatHeart 20s infinite linear;
+            pointer-events: none;
+        }
+        body::before {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+            font-size: 28px;
+        }
+        body::after {
+            bottom: 15%;
+            right: 5%;
+            animation-delay: -7s;
+            font-size: 24px;
+        }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-30px) rotate(10deg) scale(1.1); }
+            100% { transform: translateY(0) rotate(0deg) scale(1); }
+        }
+
+        .container {
+            max-width: 440px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            box-shadow: 0 12px 48px rgba(180, 100, 120, 0.15), 0 4px 20px rgba(180, 100, 120, 0.06);
+            padding: 40px 32px 44px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s;
+            border: 1px solid rgba(220, 180, 192, 0.2);
+        }
+
+        /* Лёгкий градиентный акцент сверху */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #e8c4ce, #dbb0bc, #e8c4ce, transparent);
+            border-radius: 0 0 4px 4px;
+        }
+
+        /* Стикер с лёгкой анимацией */
+        .sticker {
+            font-size: 34px;
+            line-height: 1.3;
+            margin-bottom: 4px;
+            display: inline-block;
+            animation: gentleBob 3s ease-in-out infinite;
+        }
+
+        @keyframes gentleBob {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-4px) rotate(2deg); }
+        }
+
+        .sticker-small {
+            font-size: 22px;
+            opacity: 0.6;
+        }
+
+        h2 {
+            color: #4a2e38;
+            font-weight: 600;
+            font-size: 24px;
+            letter-spacing: -0.2px;
+            margin: 8px 0 4px;
+        }
+
+        .sub-text {
+            color: #8a6e78;
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 24px;
+            background: rgba(247, 238, 240, 0.7);
+            padding: 6px 18px;
+            border-radius: 30px;
+            display: inline-block;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Вопросы с плавным появлением */
+        .question-block {
+            display: block;
+            animation: fadeSlide 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(20px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin: 24px 0 12px;
+        }
+
+        .btn {
+            border: none;
+            padding: 12px 38px;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+            background: #f5e6ea;
+            color: #4a2e38;
+            border: 1.5px solid transparent;
+            min-width: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover::after {
+            opacity: 1;
+        }
+
+        .btn-primary {
+            background: #e8c4ce;
+            color: #3d232e;
+            border-color: #dbb0bc;
+        }
+
+        .btn-primary:hover {
+            background: #e0b4c0;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(200, 130, 150, 0.25);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .btn-no {
+            background: #f0e6e8;
+            color: #7a5e68;
+            border-color: #e0d0d4;
+            cursor: default;
+        }
+
+        .btn-no:hover {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><path fill="%23d47a8a" d="M14 26C6.7 19.6 2 15 2 10.4 2 6.6 5 3 9 3c3.4 0 6 2.8 8 5.6C19 5.8 21.6 3 25 3c4 0 7 3.6 7 7.4 0 4.6-4.7 9.2-12 15.6z"/></svg>') 14 14, auto !important;
+            transform: scale(0.98);
+        }
+
+        /* Модалка с эффектом появления */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(60, 40, 48, 0.3);
+            backdrop-filter: blur(6px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeModal 0.3s ease;
+        }
+
+        @keyframes fadeModal {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .modal-card {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            max-width: 380px;
+            width: 92%;
+            padding: 32px 24px 36px;
+            border-radius: 28px;
+            box-shadow: 0 24px 64px rgba(120, 60, 80, 0.2);
+            text-align: center;
+            animation: popModal 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            border: 1px solid rgba(220, 180, 192, 0.15);
+        }
+
+        @keyframes popModal {
+            0% { transform: scale(0.9) translateY(20px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .modal-card .sticker {
+            font-size: 28px;
+            margin-bottom: 2px;
+            animation: gentleBob 2.5s ease-in-out infinite;
+        }
+
+        .modal-card h3 {
+            color: #4a2e38;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .modal-card .sub-grey {
+            color: #8a7680;
+            font-size: 15px;
+            font-weight: 400;
+            background: rgba(245, 237, 239, 0.7);
+            padding: 6px 16px;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 4px 0 18px;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-modal {
+            background: #e8c4ce;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #3d232e;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+            border: 1.5px solid #dbb0bc;
+            min-width: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-modal::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn-modal:hover {
+            background: #e0b4c0;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(200, 130, 150, 0.25);
+        }
+
+        .btn-modal:hover::after {
+            opacity: 1;
+        }
+
+        .btn-modal:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* Дата и время */
+        .picker-group {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            align-items: center;
+            margin: 18px 0 16px;
+        }
+
+        .picker-group input {
+            padding: 12px 16px;
+            border-radius: 40px;
+            border: 1.5px solid #e8d4da;
+            background: rgba(252, 247, 248, 0.8);
+            font-size: 16px;
+            width: 100%;
+            max-width: 240px;
+            text-align: center;
+            color: #3d232e;
+            outline: none;
+            transition: all 0.25s;
+            font-weight: 400;
+            backdrop-filter: blur(4px);
+        }
+
+        .picker-group input:focus {
+            border-color: #dbb0bc;
+            box-shadow: 0 0 0 4px rgba(200, 140, 160, 0.12);
+            background: #ffffff;
+            transform: scale(1.02);
+        }
+
+        .picker-group input:hover {
+            border-color: #d0b0ba;
+        }
+
+        .btn-confirm {
+            background: #e8c4ce;
+            border: none;
+            padding: 12px 36px;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #3d232e;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+            border: 1.5px solid #dbb0bc;
+            margin-top: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-confirm::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn-confirm:hover {
+            background: #e0b4c0;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(200, 130, 150, 0.25);
+        }
+
+        .btn-confirm:hover::after {
+            opacity: 1;
+        }
+
+        .btn-confirm:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* Финал с эффектом */
+        .final-block .sticker {
+            font-size: 42px;
+            animation: gentleBob 2s ease-in-out infinite;
+        }
+
+        .final-block h2 {
+            font-size: 26px;
+        }
+
+        .final-block .divider {
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #e0ccd2, transparent);
+            margin: 12px auto 14px;
+            border-radius: 2px;
+        }
+
+        .final-block p {
+            font-size: 18px;
+            color: #8a6e78;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .final-block .sticker-small {
+            display: inline-block;
+            animation: gentleBob 3.5s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Эффект пульсации для кнопок (дополнительно) */
+        @keyframes softPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(200, 140, 160, 0); }
+            50% { box-shadow: 0 0 0 6px rgba(200, 140, 160, 0.08); }
+        }
+
+        .btn-primary:focus-visible,
+        .btn-modal:focus-visible,
+        .btn-confirm:focus-visible {
+            outline: none;
+            animation: softPulse 1.2s ease-in-out infinite;
+        }
+
+        @media (max-width: 420px) {
+            .container { padding: 28px 18px 32px; }
+            .btn { padding: 10px 24px; font-size: 16px; min-width: 80px; }
+            .btn-group { gap: 16px; }
+            .modal-card { padding: 26px 18px 30px; }
+            .container::before { width: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="app">
+    <div class="sticker">🧸</div>
+
+    <!-- Шаг 1 -->
+    <div id="step1" class="question-block">
+        <h2>Пойдёшь со мной на свидание?</h2>
+        <div class="btn-group">
+            <button class="btn btn-primary" id="yesBtn">Да</button>
+            <button class="btn btn-no" id="noBtn">Нет</button>
+        </div>
+        <div style="font-size: 13px; color: #b098a2; margin-top: 6px; opacity: 0.7;">наведи на «Нет» — увидишь сердечко</div>
+    </div>
+
+    <!-- Шаг 3 -->
+    <div id="step3" class="question-block hidden">
+        <div class="sticker" style="font-size: 28px;">🌸</div>
+        <h2>Когда ты свободна?</h2>
+        <div class="picker-group">
+            <input type="date" id="datePicker">
+            <input type="time" id="timePicker" value="18:00">
+            <button class="btn-confirm" id="confirmBtn">Договорились</button>
+        </div>
+    </div>
+
+    <!-- Финал -->
+    <div id="stepFinal" class="question-block hidden final-block">
+        <div class="sticker">❤️</div>
+        <h2>Рад, что ты не отказалась</h2>
+        <div class="divider"></div>
+        <p>До встречи</p>
+        <div class="sticker-small" style="margin-top: 16px; font-size: 20px; opacity: 0.5;">🧸</div>
+    </div>
+</div>
+
+<div id="modalContainer"></div>
+
+<script>
+(function() {
+    const step1 = document.getElementById('step1');
+    const step3 = document.getElementById('step3');
+    const stepFinal = document.getElementById('stepFinal');
+
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+
+    // Блокировка "Нет"
+    noBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        this.style.transform = 'scale(0.95)';
+        this.style.transition = 'transform 0.1s';
+        setTimeout(() => this.style.transform = '', 120);
+    });
+
+    // Открытие модалки
+    function openModal() {
+        const overlay = document.createElement('div');
+        overlay.className = 'modal-overlay';
+        overlay.id = 'modalOverlay';
+        overlay.innerHTML = `
+            <div class="modal-card">
+                <div class="sticker">🧸</div>
+                <h3>Подожди, ты правда согласилась?</h3>
+                <div class="sub-grey">(я был готов, что ты откажешь)</div>
+                <button class="btn-modal" id="modalYesBtn">Да-да-да! Я согласна</button>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+
+        document.getElementById('modalYesBtn').addEventListener('click', function() {
+            const overlayEl = document.getElementById('modalOverlay');
+            if (overlayEl) overlayEl.remove();
+
+            step1.classList.add('hidden');
+            step3.classList.remove('hidden');
+            step3.style.animation = 'none';
+            requestAnimationFrame(() => {
+                step3.style.animation = 'fadeSlide 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
+            });
+        });
+
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                // не закрываем
+            }
+        });
+    }
+
+    yesBtn.addEventListener('click', openModal);
+
+    // Дата и время
+    const datePicker = document.getElementById('datePicker');
+    const timePicker = document.getElementById('timePicker');
+    const confirmBtn = document.getElementById('confirmBtn');
+
+    const today = new Date().toISOString().split('T')[0];
+    datePicker.setAttribute('min', today);
+    datePicker.value = today;
+
+    confirmBtn.addEventListener('click', function() {
+        if (!datePicker.value || !timePicker.value) {
+            alert('Выбери дату и время 😊');
+            return;
+        }
+        step3.classList.add('hidden');
+        stepFinal.classList.remove('hidden');
+        stepFinal.style.animation = 'none';
+        requestAnimationFrame(() => {
+            stepFinal.style.animation = 'fadeSlide 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
+        });
+    });
+
+    document.querySelectorAll('#datePicker, #timePicker').forEach(inp => {
+        inp.addEventListener('keypress', e => {
+            if (e.key === 'Enter') confirmBtn.click();
+        });
+    });
+
+    // Hover эффект для "Да"
+    yesBtn.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-3px) scale(1.02)';
+        this.style.boxShadow = '0 8px 24px rgba(200,130,150,0.25)';
+    });
+    yesBtn.addEventListener('mouseleave', function() {
+        this.style.transform = '';
+        this.style.boxShadow = '';
+    });
+
+    // Закрытие по Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('modalOverlay');
+            if (modal) modal.remove();
+        }
+    });
+})();
+</script>
+
+</body>
+</html>
