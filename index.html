@@ -20,13 +20,11 @@
             background: #faf0f2;
             padding: 20px;
             position: relative;
-            /* Фон с сердечками */
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" opacity="0.08"><path fill="%23d47a8a" d="M60 106C35 89 12 73 12 53c0-12 9-22 20-22 11 0 18 7 22 14 4-7 11-14 22-14 11 0 20 10 20 22 0 20-23 36-48 53z"/></svg>');
             background-size: 120px 120px;
             background-position: 0 0;
         }
 
-        /* Плавающие сердечки поверх фона (чисто CSS) */
         body::before,
         body::after {
             content: '❤️';
@@ -50,9 +48,8 @@
         }
 
         @keyframes floatHeart {
-            0% { transform: translateY(0) rotate(0deg) scale(1); }
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
             50% { transform: translateY(-30px) rotate(10deg) scale(1.1); }
-            100% { transform: translateY(0) rotate(0deg) scale(1); }
         }
 
         .container {
@@ -66,11 +63,9 @@
             text-align: center;
             position: relative;
             z-index: 2;
-            transition: all 0.3s;
             border: 1px solid rgba(220, 180, 192, 0.2);
         }
 
-        /* Лёгкий градиентный акцент сверху */
         .container::before {
             content: '';
             position: absolute;
@@ -83,7 +78,6 @@
             border-radius: 0 0 4px 4px;
         }
 
-        /* Стикер с лёгкой анимацией */
         .sticker {
             font-size: 34px;
             line-height: 1.3;
@@ -97,11 +91,6 @@
             50% { transform: translateY(-4px) rotate(2deg); }
         }
 
-        .sticker-small {
-            font-size: 22px;
-            opacity: 0.6;
-        }
-
         h2 {
             color: #4a2e38;
             font-weight: 600;
@@ -110,19 +99,6 @@
             margin: 8px 0 4px;
         }
 
-        .sub-text {
-            color: #8a6e78;
-            font-size: 15px;
-            font-weight: 400;
-            margin-bottom: 24px;
-            background: rgba(247, 238, 240, 0.7);
-            padding: 6px 18px;
-            border-radius: 30px;
-            display: inline-block;
-            backdrop-filter: blur(4px);
-        }
-
-        /* Вопросы с плавным появлением */
         .question-block {
             display: block;
             animation: fadeSlide 0.4s cubic-bezier(0.22, 1, 0.36, 1);
@@ -156,19 +132,6 @@
             overflow: hidden;
         }
 
-        .btn::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .btn:hover::after {
-            opacity: 1;
-        }
-
         .btn-primary {
             background: #e8c4ce;
             color: #3d232e;
@@ -197,7 +160,6 @@
             transform: scale(0.98);
         }
 
-        /* Модалка с эффектом появления */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -236,31 +198,6 @@
             100% { transform: scale(1) translateY(0); opacity: 1; }
         }
 
-        .modal-card .sticker {
-            font-size: 28px;
-            margin-bottom: 2px;
-            animation: gentleBob 2.5s ease-in-out infinite;
-        }
-
-        .modal-card h3 {
-            color: #4a2e38;
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .modal-card .sub-grey {
-            color: #8a7680;
-            font-size: 15px;
-            font-weight: 400;
-            background: rgba(245, 237, 239, 0.7);
-            padding: 6px 16px;
-            border-radius: 30px;
-            display: inline-block;
-            margin: 4px 0 18px;
-            backdrop-filter: blur(4px);
-        }
-
         .btn-modal {
             background: #e8c4ce;
             border: none;
@@ -273,17 +210,6 @@
             transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
             border: 1.5px solid #dbb0bc;
             min-width: 200px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-modal::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s;
         }
 
         .btn-modal:hover {
@@ -292,15 +218,10 @@
             box-shadow: 0 8px 24px rgba(200, 130, 150, 0.25);
         }
 
-        .btn-modal:hover::after {
-            opacity: 1;
-        }
-
         .btn-modal:active {
             transform: translateY(0) scale(0.98);
         }
 
-        /* Дата и время */
         .picker-group {
             display: flex;
             flex-direction: column;
@@ -321,8 +242,6 @@
             color: #3d232e;
             outline: none;
             transition: all 0.25s;
-            font-weight: 400;
-            backdrop-filter: blur(4px);
         }
 
         .picker-group input:focus {
@@ -330,10 +249,6 @@
             box-shadow: 0 0 0 4px rgba(200, 140, 160, 0.12);
             background: #ffffff;
             transform: scale(1.02);
-        }
-
-        .picker-group input:hover {
-            border-color: #d0b0ba;
         }
 
         .btn-confirm {
@@ -348,17 +263,6 @@
             transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
             border: 1.5px solid #dbb0bc;
             margin-top: 4px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-confirm::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s;
         }
 
         .btn-confirm:hover {
@@ -367,15 +271,10 @@
             box-shadow: 0 8px 24px rgba(200, 130, 150, 0.25);
         }
 
-        .btn-confirm:hover::after {
-            opacity: 1;
-        }
-
         .btn-confirm:active {
             transform: translateY(0) scale(0.98);
         }
 
-        /* Финал с эффектом */
         .final-block .sticker {
             font-size: 42px;
             animation: gentleBob 2s ease-in-out infinite;
@@ -400,35 +299,24 @@
             letter-spacing: 2px;
         }
 
-        .final-block .sticker-small {
-            display: inline-block;
-            animation: gentleBob 3.5s ease-in-out infinite;
-            animation-delay: 0.5s;
-        }
-
         .hidden {
             display: none !important;
         }
 
-        /* Эффект пульсации для кнопок (дополнительно) */
-        @keyframes softPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(200, 140, 160, 0); }
-            50% { box-shadow: 0 0 0 6px rgba(200, 140, 160, 0.08); }
-        }
-
-        .btn-primary:focus-visible,
-        .btn-modal:focus-visible,
-        .btn-confirm:focus-visible {
-            outline: none;
-            animation: softPulse 1.2s ease-in-out infinite;
-        }
-
-        @media (max-width: 420px) {
-            .container { padding: 28px 18px 32px; }
-            .btn { padding: 10px 24px; font-size: 16px; min-width: 80px; }
-            .btn-group { gap: 16px; }
-            .modal-card { padding: 26px 18px 30px; }
-            .container::before { width: 60px; }
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4a2e38;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 40px;
+            font-size: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            z-index: 999;
+            animation: fadeSlide 0.4s ease;
+            max-width: 90%;
         }
     </style>
 </head>
@@ -437,7 +325,6 @@
 <div class="container" id="app">
     <div class="sticker">🧸</div>
 
-    <!-- Шаг 1 -->
     <div id="step1" class="question-block">
         <h2>Пойдёшь со мной на свидание?</h2>
         <div class="btn-group">
@@ -447,7 +334,6 @@
         <div style="font-size: 13px; color: #b098a2; margin-top: 6px; opacity: 0.7;">наведи на «Нет» — увидишь сердечко</div>
     </div>
 
-    <!-- Шаг 3 -->
     <div id="step3" class="question-block hidden">
         <div class="sticker" style="font-size: 28px;">🌸</div>
         <h2>Когда ты свободна?</h2>
@@ -458,7 +344,6 @@
         </div>
     </div>
 
-    <!-- Финал -->
     <div id="stepFinal" class="question-block hidden final-block">
         <div class="sticker">❤️</div>
         <h2>Рад, что ты не отказалась</h2>
@@ -478,16 +363,23 @@
 
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
+    const datePicker = document.getElementById('datePicker');
+    const timePicker = document.getElementById('timePicker');
+    const confirmBtn = document.getElementById('confirmBtn');
 
-    // Блокировка "Нет"
+    // Сегодняшняя дата
+    const today = new Date().toISOString().split('T')[0];
+    datePicker.setAttribute('min', today);
+    datePicker.value = today;
+
+    // --- Блокировка "Нет"
     noBtn.addEventListener('click', function(e) {
         e.preventDefault();
         this.style.transform = 'scale(0.95)';
-        this.style.transition = 'transform 0.1s';
         setTimeout(() => this.style.transform = '', 120);
     });
 
-    // Открытие модалки
+    // --- Модалка
     function openModal() {
         const overlay = document.createElement('div');
         overlay.className = 'modal-overlay';
@@ -496,7 +388,7 @@
             <div class="modal-card">
                 <div class="sticker">🧸</div>
                 <h3>Подожди, ты правда согласилась?</h3>
-                <div class="sub-grey">(я был готов, что ты откажешь)</div>
+                <div class="sub-grey" style="color:#8a7680;font-size:15px;background:rgba(245,237,239,0.7);padding:6px 16px;border-radius:30px;display:inline-block;margin:4px 0 18px;">(я был готов, что ты откажешь)</div>
                 <button class="btn-modal" id="modalYesBtn">Да-да-да! Я согласна</button>
             </div>
         `;
@@ -513,30 +405,60 @@
                 step3.style.animation = 'fadeSlide 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
             });
         });
-
-        overlay.addEventListener('click', function(e) {
-            if (e.target === overlay) {
-                // не закрываем
-            }
-        });
     }
 
     yesBtn.addEventListener('click', openModal);
 
-    // Дата и время
-    const datePicker = document.getElementById('datePicker');
-    const timePicker = document.getElementById('timePicker');
-    const confirmBtn = document.getElementById('confirmBtn');
-
-    const today = new Date().toISOString().split('T')[0];
-    datePicker.setAttribute('min', today);
-    datePicker.value = today;
+    // --- ОТПРАВКА ДАННЫХ НА ПОЧТУ
+    // ЗАМЕНИ ТВОЙ_ID_ФОРМЫ на ID с formspree.io
+    const FORMSPREE_ID = 'xvzjgnov';
 
     confirmBtn.addEventListener('click', function() {
-        if (!datePicker.value || !timePicker.value) {
+        const date = datePicker.value;
+        const time = timePicker.value;
+
+        if (!date || !time) {
             alert('Выбери дату и время 😊');
             return;
         }
+
+        // Форматируем дату для красивого отображения
+        const dateObj = new Date(date + 'T' + time);
+        const formattedDate = dateObj.toLocaleString('ru-RU', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+
+        // Отправляем данные на Formspree
+        fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                date: date,
+                time: time,
+                formatted: formattedDate,
+                message: 'Она согласилась на свидание! 🎉'
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                // Показываем уведомление об успехе
+                showToast('✅ Дата отправлена! Жди подтверждения 😊');
+            } else {
+                showToast('⚠️ Что-то пошло не так, но мы увидим дату!');
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+            showToast('⚠️ Ошибка отправки, но дата сохранилась!');
+        });
+
+        // В любом случае переходим к финальному экрану
         step3.classList.add('hidden');
         stepFinal.classList.remove('hidden');
         stepFinal.style.animation = 'none';
@@ -545,13 +467,24 @@
         });
     });
 
-    document.querySelectorAll('#datePicker, #timePicker').forEach(inp => {
-        inp.addEventListener('keypress', e => {
-            if (e.key === 'Enter') confirmBtn.click();
-        });
-    });
+    // --- Вспомогательные функции
+    function showToast(text) {
+        const oldToast = document.querySelector('.toast');
+        if (oldToast) oldToast.remove();
 
-    // Hover эффект для "Да"
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.textContent = text;
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.5s';
+            setTimeout(() => toast.remove(), 500);
+        }, 4000);
+    }
+
+    // --- Вспомогательные эффекты
     yesBtn.addEventListener('mouseenter', function() {
         this.style.transform = 'translateY(-3px) scale(1.02)';
         this.style.boxShadow = '0 8px 24px rgba(200,130,150,0.25)';
@@ -561,7 +494,12 @@
         this.style.boxShadow = '';
     });
 
-    // Закрытие по Escape
+    document.querySelectorAll('#datePicker, #timePicker').forEach(inp => {
+        inp.addEventListener('keypress', e => {
+            if (e.key === 'Enter') confirmBtn.click();
+        });
+    });
+
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             const modal = document.getElementById('modalOverlay');
